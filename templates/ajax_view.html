@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% load static %}
+<body>
+    <table id="t1">
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+        </tr>
+
+    </table>
+</body>
+<script src="{% static '/jquery/jquery.js' %}"></script>
+<script>
+$(document).ready(function () {
+        $.ajax({
+            url: "/onlineshopping/view_ajax_get/",
+            type: "GET",
+            data: {     },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(hoi) {
+              var  res=hoi["status"];
+                if (res =="ok")
+                {
+                    var mydata=hoi["data"];
+                    for(var i=0;i<mydata.length;i++)
+                    {
+                        var name=mydata[i]["name"];
+                        var dept=mydata[i]["department"];
+                        var id=mydata[i]["id"];
+                        $("#t1").append('<tr><td>' + name + '</td><td>' + dept + '</td></tr>')
+                    }
+                }
+                else {
+                    alert("no data");
+                }
+            },
+            error: function(e) {
+                alert("error");
+            }
+        });
+    });
+</script>
+</html>

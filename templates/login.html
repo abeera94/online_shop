@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="/onlineshopping/post_login/">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="uname" value=""></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="pwd" value=""></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="btn" value="LOGIN"></td>
+            </tr>
+            <tr>
+                <td><a href="/onlineshopping/usignup/">user sign up </a></td><td><a href="/onlineshopping/ssignup/"> shop sign up </a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

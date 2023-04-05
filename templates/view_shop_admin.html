@@ -1,0 +1,47 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        {% csrf_token %}
+        <table border="0">
+            <tr style="background-color: #0B0F32;text-align: center;color: white;height: 50px">
+                <th>SL No</th>
+                <th>Shop name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Place</th>
+                <th>Post</th>
+                <th>District</th>
+                <th>Pin</th>
+                <th>License</th>
+                <th>Owner name</th>
+                <th>Owner email</th>
+
+            </tr>
+            {% for i in data %}
+            <tr style="background-color: #8285a1;text-align: center;color: white;height: 50px">
+                <td>&nbsp;{{ forloop.counter }}&nbsp;</td>
+                <td>&nbsp;{{ i.sname }}&nbsp;</td>
+                <td>&nbsp;{{ i.semail }}&nbsp;</td>
+                <td>&nbsp;{{ i.scontact }}&nbsp;</td>
+                <td>&nbsp;{{ i.splace }}&nbsp;</td>
+                <td>&nbsp;{{ i.spost }}&nbsp;</td>
+                <td>&nbsp;{{ i.sdistrict }}&nbsp;</td>
+                <td>&nbsp;{{ i.spin }}&nbsp;</td>
+                <td>&nbsp;{{ i.slicense }}&nbsp;</td>
+                <td>&nbsp;{{ i.ownername }}&nbsp;</td>
+                <td>&nbsp;{{ i.owneremail }}&nbsp;</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'shop_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <th style="background-color: #0B0F32;text-align: center;color: white;height: 50px">Order date</th>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">{{ data2.date }}</td>
+            </tr>
+            <br>
+        </table>
+
+        <table border="0">
+            <tr style="background-color: #0B0F32;text-align: center;color: white;height: 50px">
+                <th>&nbsp;SL NO&nbsp;</th>
+                <th>&nbsp;Product name&nbsp;</th>
+                <th>&nbsp;Product image&nbsp;</th>
+                <th>&nbsp;Product price&nbsp;</th>
+                <th>&nbsp;Product quantity&nbsp;</th>
+            </tr>
+            {% for i in data1 %}
+            <tr style="background-color: #8285a1;text-align: center;color: white;height: 50px">
+                <td>&nbsp;{{ forloop.counter }}&nbsp;</td>
+                <td>&nbsp;{{ i.productid.pname }}&nbsp;</td>
+                <td>&nbsp;<img src="{{ i.productid.image }}" width="100px" height="100px"/>&nbsp;</td>
+                <td>&nbsp;{{ i.productid.pprice }}</td>
+                <td>&nbsp;{{ i.quantity }}&nbsp;</td>
+            </tr>
+                <br>
+            {% endfor %}
+        </table>
+        <table border="1">
+            <tr>
+                <th style="background-color: #8285a1;text-align: center;color: white;height: 50px">Total amount</th>
+                <td style="background-color: #8285a1;text-align: center;color: white;height: 50px">{{ data2.totalamount }}</td>
+            </tr>
+            <br>
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'user_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        {% csrf_token %}
+        <table border="0">
+            <tr style="background-color: #0B0F32;text-align: center;color: white;height: 50px">
+                <th>&nbsp;SL NO&nbsp;</th>
+                <th>&nbsp;Complaint&nbsp;</th>
+                <th>&nbsp;Reply&nbsp;</th>
+            </tr>
+            {% for i in data %}
+            <tr style="background-color: #8285a1;text-align: center;color: white;height: 50px">
+                <td>&nbsp;{{ forloop.counter }}&nbsp;</td>
+                <td>&nbsp;{{ i.complaint }}&nbsp;</td>
+                <td>&nbsp;{{ i.reply }}&nbsp;</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

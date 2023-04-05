@@ -1,0 +1,82 @@
+{% extends 'ajax_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+</head>
+<body>
+
+<form id="upload-file" enctype="multipart/form-data">
+    {% csrf_token %}
+    Category
+    <select name="cid"  id="select">
+
+    </select>
+
+    Product name
+    <input type="text" id="name" name="pname" value="">
+    Product price
+    <input type="text" id="price" name="pcost" value=""><br/><br/>
+    Product image
+    <input type="file" name="file"><button type="submit" class=" btn-success">Upload</button>
+</form>
+
+</body>
+<script src="{% static '/jquery/jquery.js' %}"></script>
+<script>
+$(document).ready(function () {
+        $.ajax({
+                 url: "/onlineshopping/add_ajax_file/",
+                 type: "GET",
+                 data: {},
+                 contentType: "application/json;charset=utf-8",
+                 dataType: "json",
+                 success: function(dataaa) {
+                    var res=dataaa["status"];
+                    if (res=='ok')
+                    {
+                        var mydata=dataaa["data"];
+                        for(var i=0;i<mydata.length;i++)
+                        {
+                            var nm=mydata[i]["name"];
+                            var nid=mydata[i]["id"]
+                            $("#select").append("<option value='"+ nid +"'>" + nm + "</option>")
+                        }
+                    }
+                    else {
+                        alert("no data");
+                    }
+            },
+                 error: function (ts) {
+
+                     alert("error");
+                 }
+
+             });
+
+    $('body').on('submit', '#upload-file', function (e) {
+        e.preventDefault()
+        var formData = new FormData(this);
+        $.ajax({
+            url: '/onlineshopping/post_add_ajax_file/',
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                alert("hoi");
+            },
+            error: function (response) {
+                alert("error");
+                alert(response);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+});
+</script>
+</html>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'user_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form  method="post" action="/onlineshopping/update_profile/">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Name&nbsp;</td>
+                <td style="background-color: #8285a1;text-align: center;color: white;height: 50px">&nbsp;{{ data.uname }}&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Email&nbsp;</td>
+                <td style="background-color: #8285a1;text-align: center;color: white;height: 50px">&nbsp;{{ data.uemail }}&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Contact&nbsp;</td>
+                <td style="background-color: #8285a1;text-align: center;color: white;height: 50px">&nbsp;{{ data.ucontact }}&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Place&nbsp;</td>
+                <td style="background-color: #8285a1;text-align: center;color: white;height: 50px">&nbsp;{{ data.uplace }}&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Post&nbsp;</td>
+                <td style="background-color: #8285a1;text-align: center;color: white;height: 50px">&nbsp;{{ data.upost }}&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;District&nbsp;</td>
+                <td style="background-color: #8285a1;text-align: center;color: white;height: 50px">&nbsp;{{ data.udistrict }}&nbsp;</td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Pin&nbsp;</td>
+                <td style="background-color: #8285a1;text-align: center;color: white;height: 50px">&nbsp;{{ data.upin }}&nbsp;</td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td><input type="submit" name="profile" value="UPDATE PROFILE" class="btn-success"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

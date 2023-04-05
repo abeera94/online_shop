@@ -1,0 +1,47 @@
+{% extends 'ajax_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+</head>
+<body>
+    <table>
+        <tr>
+            <th align="left">Name</th>
+            <td><input type="text" name="name" id="name"></td>
+        </tr>
+        <tr>
+            <th align="left">Department</th>
+            <td><input type="text" name="dept" id="dpt"></td>
+        </tr>
+    </table>
+<input type="button" name="btn" value="ADD" id="btn">
+</body>
+<script src="{% static '/jquery/jquery.js' %}"></script>
+<script>
+$(document).ready(function () {
+    $(document).on("click","#btn",function () {
+        var a = $("#name").val();
+        var b = $("#dpt").val();
+        $.ajax({
+            url: "/onlineshopping/post_add_ajax/"+a+"/"+b,
+            type: "GET",
+            data: {     },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(dat) {
+                res=dat["status"]
+                alert(res);
+            },
+            error: function(ts) {
+                alert("error");
+            }
+        });
+    });
+});
+</script>
+</html>
+{% endblock %}

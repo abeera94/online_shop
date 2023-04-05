@@ -1,0 +1,38 @@
+{% extends 'shop_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="/onlineshopping/search_category/">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><input type="search" name="search" value=""></td>
+                <td><input type="submit" name="button" value="SEARCH" class="btn-success" "></td>
+            </tr>
+        </table>
+    </form>
+    <form>
+        {% csrf_token %}
+        <table border="0">
+            <tr style="background-color: #0B0F32;text-align: center;color: white;height: 50px">
+                <th>&nbsp;SL NO&nbsp;</th>
+                <th>&nbsp;Category name&nbsp;</th>
+                <th></th>
+            </tr>
+            {% for i in data %}
+            <tr style="background-color: #8285a1;text-align: center;color: white;height: 50px">
+                <td>&nbsp;{{ forloop.counter }}&nbsp;</td>
+                <td>&nbsp;{{ i.cname }}&nbsp;</td>
+                <td>&nbsp;<a href="/onlineshopping/edit_category/{{ i.id }}" class="btn-success">edit</a>&nbsp;&nbsp;&nbsp;<a href="/onlineshopping/delete_category/{{ i.id }}" class="btn-danger">delete</a> &nbsp;</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

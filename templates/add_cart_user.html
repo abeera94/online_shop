@@ -1,0 +1,24 @@
+{% extends 'user_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="/onlineshopping/post_cart/" >
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Product quantity</td>
+                <td><input type="number" name="pquantity" value=""></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="btn" value="ADD" class="btn-success"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

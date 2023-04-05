@@ -1,0 +1,41 @@
+{% extends 'user_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="/onlineshopping/add_ordermain_user/">
+        {% csrf_token %}
+        <table border="0">
+            <tr style="background-color: #0B0F32;text-align: center;color: white;height: 50px">
+                <th>&nbsp;SL NO&nbsp;</th>
+                <th>&nbsp;Product name&nbsp;</th>
+                <th>&nbsp;Product price&nbsp;</th>
+                <th>&nbsp;Product image&nbsp;</th>
+                <th>&nbsp;Product quantity&nbsp;</th>
+                <th></th>
+            </tr>
+            {% for i in data %}
+            <tr style="background-color: #8285a1;text-align: center;color: white;height: 50px">
+                <td>&nbsp;{{ forloop.counter }}&nbsp;</td>
+                <td>&nbsp;{{ i.pid.pname }}&nbsp;</td>
+                <td>&nbsp;{{ i.pid.pprice }}&nbsp;</td>
+                <td>&nbsp;<img src="{{ i.pid.image }}" width="200px" height="200px"/>&nbsp;</td>
+                <td>&nbsp;{{ i.pquantity }}&nbsp;</td>
+                <td>&nbsp;<a href="/onlineshopping/edit_cart/{{ i.id }}" class="btn-success">edit</a>&nbsp;&nbsp;<a href="/onlineshopping/delete_cart/{{ i.id }}" class="btn-danger">delete</a>&nbsp;</td>
+            </tr>
+            {% endfor %}
+        </table>
+    <br>
+        <table>
+            <tr>
+                <td><input type="submit" name="order" value="PLACE ORDER" class="btn-info"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

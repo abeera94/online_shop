@@ -1,0 +1,38 @@
+{% extends 'user_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="/onlineshopping/post_payment_user/">
+        {% csrf_token %}
+        <table border="0">
+            <tr>
+                <th style="background-color: #0B0F32;text-align: center;color: white;height: 50px">Total amount</th>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">{{ data }}</td>
+            </tr>
+        </table>
+        <br>
+        <table border="0">
+            <tr>
+                <th style="background-color: #0B0F32;text-align: center;color: white;height: 50px">Account number</th>
+                <td><input type="text" name="accountno" value="" style="height: 50px;"></td>
+            </tr>
+            <tr>
+                <th style="background-color: #0B0F32;text-align: center;color: white;height: 50px">IFSC code</th>
+                <td><input type="text" name="ifsc" value="" style="height: 50px;"></td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td><input type="submit" name="btn" value="PAY" class="btn-info"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

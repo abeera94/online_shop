@@ -1,0 +1,31 @@
+{% extends 'shop_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        {% csrf_token %}
+        <table>
+            <tr style="background-color: #0B0F32;text-align: center;color: white;height: 50px">
+                <th>&nbsp;SL NO&nbsp;</th>
+                <th>&nbsp;Date&nbsp;</th>
+                <th>&nbsp;Complaint&nbsp;</th>
+                <th></th>
+            </tr>
+            {% for i in data %}
+            <tr style="background-color: #8285a1;text-align: center;color: white;height: 50px">
+                <td>&nbsp;{{ forloop.counter }}&nbsp;</td>
+                <td>&nbsp;{{ i.date }}&nbsp;</td>
+                <td>&nbsp;{{ i.complaint }}&nbsp;</td>
+                <td>{% if i.reply == 'pending' %}&nbsp;<a href="/onlineshopping/send_complaint_reply_shop/{{ i.id }}" class="btn-success">send reply</a>&nbsp;{% else %} {{ i.reply }} {% endif %}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}

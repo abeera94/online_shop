@@ -1,0 +1,150 @@
+{% extends 'ajax_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% load static %}
+<body>
+    <table id="tableid">
+        <tr>
+                <th>&nbsp;Name&nbsp;</th>
+                <th>&nbsp;Price&nbsp;</th>
+                <th>&nbsp;Image&nbsp;</th>
+                <th></th>
+        </tr>
+    </table>
+<table id="k">
+    <tr>
+        <td>Sl_No:</td>
+        <td><input type="text" id="i1" name="sl_id"></td>
+    </tr>
+    <tr>
+            <td>Name:</td>
+            <td><input type="text" id="t1" name="name"></td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td><input type="text" id="t2" name="dept"></td>
+
+        <td><input type="submit" id="sub" value="Update" class="btn-success"></td>
+    </tr>
+</table>
+</body>
+<script src="{% static '/jquery/jquery.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $("#k").hide();
+        $.ajax({
+            url: "/onlineshopping/view_file_ajax_get/",
+            type: "GET",
+            data: {     },
+            success: function(dataaa) {
+                var res=dataaa["status"];
+                    if (res=='ok')
+                    {
+                        var mydata=dataaa["data"];
+                        for(var i=0;i<mydata.length;i++)
+                        {
+                            var nm=mydata[i]["name"];
+                            var prce=mydata[i]["price"];
+                            var img=mydata[i]["image"];
+                            var nid=mydata[i]["id"]
+                            $("#tableid").append("<tr><td>" + nm + "</td><td>" + prce + "</td><td><img src='"+ img + "' width='100px'/></td><td><a href='#' id='edit' xx="+ nid +">Edit</a></td><td><a href='#' id='delete' yy="+ nid +">Delete</a></td></tr>")
+                        }
+                    }
+                    else {
+                        alert("no data");
+                    }
+            },
+            error: function(e) {
+                alert("error");
+            }
+        });
+        $(document).on('click','#edit',function () {
+             alert("Edit");
+              $("#tableid").hide();
+               $("#k").show();
+             var edit_id = $(this).attr('xx')
+             alert(edit_id)
+
+             $.ajax({
+                 url: "/onlineshopping/edit_ajax/" + edit_id,
+                 type: "GET",
+                 data: {},
+                 contentType: "application/json;charset=utf-8",
+                 dataType: "json",
+                 success: function (dat) {
+
+                     st = dat["status"]
+                     nm = dat["name"]
+                     prc = dat["price"]
+                     idd = dat["id"]
+
+                     $("#t1").val(nm)
+                     $("#t2").val(prc)
+                     $("#i1").val(idd)
+
+                 },
+                 error: function (ts) {
+
+                     alert("error");
+                 }
+
+             });
+         });
+         $("#sub").click(function () {
+             alert("update")
+             var p = $("#i1").val()
+             var q = $("#t1").val()
+             var r = $("#t2").val()
+
+             $.ajax({
+                 url: "/onlineshopping/update_ajax/" +p+ "/" +q+ "/" +r,
+                 type: "GET",
+                 data: {},
+                 contentType: "application/json;charset=utf-8",
+                 dataType: "json",
+                 success: function (dat) {
+                     res = dat["status"];
+                     alert(res);
+                      $("#tableid").show();
+               $("#k").hide();
+               window.location="/onlineshopping/view_file_ajax/"
+                 },
+                 error: function (ts) {
+                     alert("error");
+
+                 }
+
+             });
+
+         });
+        $(document).on('click','#delete', function () {
+             alert("Delete")
+             var delete_id = $(this).attr('yy');
+
+             $.ajax({
+                 url: "/onlineshopping/delete_ajax/" + delete_id,
+                 type: "GET",
+                 data: {},
+                 contentType: "application/json;charset=utf-8",
+                 dataType: "json",
+                 success: function (dat) {
+
+                     st = dat["status"]
+                     res = dat["status"]
+                     alert(res)
+                     window.location="/onlineshopping/view_file_ajax/"
+                 },
+                 error: function (ts) {
+                     alert("error")
+                 }
+             });
+         });
+    });
+</script>
+</html>
+{% endblock %}

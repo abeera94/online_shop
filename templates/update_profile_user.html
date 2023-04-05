@@ -1,0 +1,51 @@
+{% extends 'user_index.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form  method="post" action="/onlineshopping/save_profile/">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Name&nbsp;</td>
+                <td ><input type="text" name="uname" value="{{ data.uname }}" style="height: 50px";></td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Email&nbsp;</td>
+                <td ><input type="text" name="email" value="{{ data.uemail }}" style="height: 50px";></td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Contact&nbsp;</td>
+                <td ><input type="text" name="contact" value="{{ data.ucontact }}" style="height: 50px";></td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Place&nbsp;</td>
+                <td ><input type="text" name="place" value="{{ data.uplace }}" style="height: 50px";></td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Post&nbsp;</td>
+                <td ><input type="text" name="post" value="{{ data.upost }}" style="height: 50px";></td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;District&nbsp;</td>
+                <td ><input type="text" name="district" value="{{ data.udistrict }}" style="height: 50px";></td>
+            </tr>
+            <tr>
+                <td style="background-color: #0B0F32;text-align: center;color: white;height: 50px">&nbsp;Pin&nbsp;</td>
+                <td><input type="text" name="pin" value="{{ data.upin }}" style="height: 50px";></td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td><input type="submit" name="profile" value="SAVE" class="btn-success"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+{% endblock %}
